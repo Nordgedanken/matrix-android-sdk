@@ -1,11 +1,11 @@
 
 apply plugin: 'com.android.library'
 
-group = "com.github.Nordgedanken"
-artifact = "matrix-android-sdk"
-version = "v0.9.0"
-
 android {
+    group = "com.github.Nordgedanken"
+    artifact = "matrix-android-sdk"
+    version = "v0.9.0"
+
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
