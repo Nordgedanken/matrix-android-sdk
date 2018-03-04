@@ -59,6 +59,12 @@ android {
             exclude '**/BuildConfig.java'
             exclude '**/R.java'
             failOnError false
+            
+            def name = variant.buildType.name
+            def task = project.tasks.create "jar${name.capitalize()}", Jar
+            task.dependsOn variant.javaCompile
+            task.from variant.javaCompile.destinationDir
+            artifacts.add('archives', task);
         }
     }
 
@@ -100,6 +106,17 @@ android {
             dir 'libs'
         }
     }
+}
+
+// build a jar with source files
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+
+artifacts {
+    archives sourcesJar
 }
 
 def gitRevision() {
